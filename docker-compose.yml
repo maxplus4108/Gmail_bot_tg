@@ -1,0 +1,13 @@
+services:
+  mailbot:
+    build: .
+    container_name: mail_bot
+    restart: always
+    # Пробрасываем файл, чтобы можно было редактировать его без пересборки
+    env_file:
+      - .env
+    volumes:
+      - ./main.py:/app/main.py
+    # Установка часового пояса (важно для логов)
+    environment:
+      - TZ=Europe/Moscow
